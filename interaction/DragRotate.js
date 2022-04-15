@@ -18,7 +18,7 @@ var __extends = (this && this.__extends) || (function () {
  */
 import PointerInteraction from './Pointer.js';
 import { FALSE } from '../functions.js';
-import { altShiftKeysOnly, mouseActionButton, mouseOnly, } from '../events/condition.js';
+import { altShiftKeysOnly, mouseActionButton, mouseSecondaryButton, mouseOnly, } from '../events/condition.js';
 import { disable } from '../rotationconstraint.js';
 /**
  * @typedef {Object} Options
@@ -110,7 +110,7 @@ var DragRotate = /** @class */ (function (_super) {
         if (!mouseOnly(mapBrowserEvent)) {
             return false;
         }
-        if (mouseActionButton(mapBrowserEvent) &&
+        if ((mouseActionButton(mapBrowserEvent) || mouseSecondaryButton(mapBrowserEvent)) &&
             this.condition_(mapBrowserEvent)) {
             var map = mapBrowserEvent.map;
             map.getView().beginInteraction();
