@@ -6,6 +6,7 @@ import {FALSE} from '../functions.js';
 import {
   altShiftKeysOnly,
   mouseActionButton,
+  mouseSecondaryButton,
   mouseOnly,
 } from '../events/condition.js';
 import {disable} from '../rotationconstraint.js';
@@ -109,7 +110,7 @@ class DragRotate extends PointerInteraction {
     }
 
     if (
-      mouseActionButton(mapBrowserEvent) &&
+      (mouseActionButton(mapBrowserEvent) || mouseSecondaryButton(mapBrowserEvent)) &&
       this.condition_(mapBrowserEvent)
     ) {
       const map = mapBrowserEvent.map;

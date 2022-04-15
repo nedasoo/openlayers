@@ -137,6 +137,22 @@ export const mouseActionButton = function (mapBrowserEvent) {
 };
 
 /**
+ * Return `true` if the event has an "secondary action"-producing mouse button.
+ *
+ * By definition, this includes right-click on windows/linux, and right-click
+ * without the ctrl key on Macs.
+ *
+ * @param {import("../MapBrowserEvent.js").default} mapBrowserEvent Map browser event.
+ * @return {boolean} The result.
+ */
+ export const mouseSecondaryButton = function(mapBrowserEvent){
+  const originalEvent = /** @type {MouseEvent} */ (
+    mapBrowserEvent.originalEvent
+  );
+  return originalEvent.button == 2 && !(WEBKIT && MAC && originalEvent.ctrlKey);
+};
+
+/**
  * Return always false.
  *
  * @param {import("../MapBrowserEvent.js").default} mapBrowserEvent Map browser event.
